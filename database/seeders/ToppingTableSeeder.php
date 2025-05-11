@@ -88,6 +88,7 @@ class ToppingTableSeeder extends Seeder
             ],
             [
                 'topping' => 'Jalapeno peppers',
+                'cost' => 0.85,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
