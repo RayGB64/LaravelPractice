@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pizza List</title>
+    <title>Pizzas & Toppings</title>
 </head>
 <body>
     <h1>All Pizzas</h1>

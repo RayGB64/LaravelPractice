@@ -26,7 +26,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/pizzas', [PizzaController::class, 'index']);
+Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('chirps', ChirpController::class)
