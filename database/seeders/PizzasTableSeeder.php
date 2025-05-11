@@ -13,7 +13,7 @@ class PizzasTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pizza')->insert([
+        DB::table('pizzas')->insert([
             [
                 'name' => 'Margherita',
                 'size' => 'Small',
