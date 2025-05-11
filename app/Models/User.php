@@ -11,6 +11,12 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Orders::class);
+    }
+
+
     public function chirps(): HasMany
     {
         return $this->hasMany(Chirp::class);

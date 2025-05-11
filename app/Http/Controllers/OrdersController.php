@@ -37,7 +37,16 @@ class OrdersController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'ingredients' => 'required|text',
+            'total' => 'required|decimal',
+            
+        ]);
+ 
+        $request->user()->orders()->create($validated);
+ 
+        return redirect(route('orders.index'));
     }
 
     /**

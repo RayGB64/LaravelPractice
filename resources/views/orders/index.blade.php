@@ -9,7 +9,7 @@
                         @foreach($pizzas as $pizza)
                             <div class="flex items-center">
                                 <input type="checkbox"
-                                       class="pizza-checkbox mr-2"
+                                       class="checkbox mr-2"
                                        data-cost="{{ $pizza->cost }}"
                                        name="pizzas[]"
                                        value="{{ $pizza->id }}"
@@ -26,7 +26,7 @@
                         @foreach($toppings as $topping)
                             <div class="flex items-center">
                                 <input type="checkbox"
-                                       class="pizza-checkbox mr-2"
+                                       class="checkbox mr-2"
                                        data-cost="{{ $topping->cost }}"
                                        name="pizzas[]"
                                        value="{{ $topping->id }}"
@@ -39,11 +39,21 @@
                         @endforeach
                     </div>
 
+                    <div class="mt-6">
+                        <label for="method" class="block text-sm font-medium text-gray-700 mb-1">
+                            Choose delivery method:
+                        </label>
+                        <select name="method" id="method" class="border-gray-300 rounded w-full sm:w-64">
+                            <option value="collection">Collection</option>
+                            <option value="delivery">Delivery</option>
+                        </select>
+                    </div>
+
                     <div class="mt-6 text-lg font-semibold">
                         Total: £<span id="total-price">0.00</span>
                     </div>
 
-                    <x-input-error :messages="$errors->get('message')" class="mt-2" />
+                    {{-- <x-input-error :messages="$errors->get('message')" class="mt-2" /> --}}
                     <x-primary-button class="mt-4">{{ __('Order') }}</x-primary-button>
 
                 </div>
@@ -52,8 +62,10 @@
     </div>
 
     <script>
-        const Checkboxes = document.querySelectorAll('.pizza-checkbox');
-        const totalDisplay = document.getElementById('total-price');
+        const Checkboxes = document.querySelectorAll('.checkbox'); //Fetching checkbox data
+        const methodSelect = document.getElementById('method'); //Fetching method data
+        const deliveryFee = 5.00; // Delivery fee
+        const totalDisplay = document.getElementById('total-price'); //Granting access to modify total-price
     
         function updateTotal() {
             let total = 0;
@@ -62,10 +74,17 @@
                     total += parseFloat(Checkbox.dataset.cost);
                 }
             });
+
+            // Add delivery fee if the selected method is delivery
+            if (methodSelect.value === 'delivery') {
+                total += deliveryFee;
+            }
+
             totalDisplay.textContent = total.toFixed(2);
         }
     
-        Checkboxes.forEach(cb => cb.addEventListener('change', updateTotal));
+        Checkboxes.forEach(cb => cb.addEventListener('change', updateTotal)); // When a check box is selected, runs the updateTotal function
+        methodSelect.addEventListener('change', updateTotal); // When delivery method is updated, runs the updateTotal function
     </script>
 
  </x-app-layout>
