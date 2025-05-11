@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('size'); // e.g., small, medium, large
             $table->text('ingredients'); // JSON or comma-separated list
-            $table->decimal('cost', 8, 2); // for currency
+            $table->decimal('total', 8, 2); // for currency
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('toppings', function (Blueprint $table) {
             $table->id();
             $table->string('topping');
+            $table->decimal('cost', 8, 2); // for currency
             $table->timestamps();
         });
     }
