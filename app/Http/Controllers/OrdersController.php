@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orders;
+use App\Models\Pizza;
+use App\Models\Toppings;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,9 +17,11 @@ class OrdersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index(): View
     {
-        return response('Hello, World!');
+        $pizzas = Pizza::all(); // fetch all pizzas
+        $toppings = Toppings::all(); // fetch all toppings
+        return view('orders.index', compact('pizzas', 'toppings')); // send to view
     }
 
     /**
