@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ChirpController;
 
+use App\Http\Controllers\OrdersController;
+
 use App\Http\Controllers\PizzaController;
 
 use App\Http\Controllers\ProfileController;
@@ -27,6 +29,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');
+
+Route::resource('orders', OrdersController::class)
+    ->only(['index', 'store'])
+    ->middleware(['auth', 'verified']); 
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('chirps', ChirpController::class)
