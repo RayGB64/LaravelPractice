@@ -16,5 +16,14 @@
             <hr>
         @endforeach
     </ul>
+    <h1>All Toppings</h1>
+    <ul>
+        @foreach ($toppings as $topping)
+            <li >
+                <strong>{{ $topping->topping }}</strong><br>
+            </li>
+            <hr>
+        @endforeach
+    </ul>
 </body>
 </html>
