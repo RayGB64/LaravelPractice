@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\ChirpController;
-
 use App\Http\Controllers\OrdersController;
 
 use App\Http\Controllers\PizzaController;
@@ -33,19 +31,6 @@ Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');
 Route::resource('orders', OrdersController::class)
     ->only(['index', 'store'])
     ->middleware(['auth', 'verified']); 
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('chirps', ChirpController::class)
-    ->only(['index', 'store', 'edit', 'update', 'destroy']);
-    Route::post(
-        '/chirps/{chirp}/addToFavourites',
-        [ChirpController::class, 'addToFavourites']
-     )->name('chirps.favourites.add');
-     Route::get(
-        '/chirps/favourites',
-        [ChirpController::class, 'favourites']
-     )->name('chirps.favourites');
-});  
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
