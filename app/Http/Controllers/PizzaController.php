@@ -14,7 +14,7 @@ class PizzaController extends Controller
 {
     public function index(): View
     {
-        $pizza = Pizza::all(); // fetch all pizzas
+        $pizzas = Pizza::all(); // fetch all pizzas
         return view('pizzas.index', compact('pizzas')); // send to view
     }
 }
